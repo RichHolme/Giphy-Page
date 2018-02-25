@@ -1,39 +1,127 @@
 $(document).ready(function() {
-	var topics = ['cat', 'dog', 'snake', 'bird', 'deer', 'fox', 'squirrel', 'lion', 'bear', 'hippo', 'monkey',
-				  'tiger', 'aligator', 'fish', 'lizard', 'giraffe', 'gorilla', 'panda', 'wolf', 'hawk']
 
-	for(var i = 0; i < topics.length; i++){
-		var newButton = $("<button>").attr('id', topics[i]).addClass('btn', 'btn-primary').text(topics[i]);
-		$("#buttons").append(newButton);
+	// to make sure user doesnt create empty button on page load
+	$("#input").val(" ");
+
+	// array of animal names
+	var topics = ['Trumpet', 'Violin', 'Bongo', 'Snare Drum', 'Tuba', 'Flute', 'Guitar', 'Piano', 'Bass Guitar', 'Harmonica', 'Saxophone',
+				  'Clarinet', 'Trombone', 'Drum', 'Banjo', 'Harp', 'Fiddle', 'Cello', 'Xylophone', 'Cymbal']
+
+	// function to create buttons
+	function buttonCreate(){
+
+		// empty div for each new button
+		$("#buttons").empty();
+
+		// loog through animal array and display each as button
+		for(var i = 0; i < topics.length; i++){
+
+			// get array strings and use strings as button text value
+			var newButton = $("<button>").attr('id', topics[i]).addClass('btn', 'btn-primary').text(topics[i]);
+
+			// display buttons on screen
+			$("#buttons").append(newButton);
+		}
 	}
 
+	// call to display buttons
+	buttonCreate();
+
+	// determine name and cal fucntion to display giphs
 	$(document).on('click', 'button', function(event){
-		// console.log(event);
-		console.log(this.id);
+		
+		// get text in button
 		var name = this.id;
-		$("#animals").empty();
+
+		// clear div for new set of gighs
+		$("#instruments").empty();
+
+		// call showImage with name
 		showImage(name);
 	})
 
+	// get giph & rating and display on screen
 	function showImage(name){
-		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&api_key=5LkGwNVkAh0pq1YEhrHrJf9S43DQJ8S7&limit=10";
+
+		// concatenate url with given name
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&rating=g&api_key=5LkGwNVkAh0pq1YEhrHrJf9S43DQJ8S7&limit=10";
 
 		$.ajax({
       		url: queryURL,
       		method: 'GET'
    		}).then(function(response) {
    			for (var i = 0; i < response.data.length; i++) {
-      			console.log(response);
+
+      			// getting img url
       			var giphyURL = response.data[i].images.fixed_height.url;
+      			// get index of 200 add 3 to insert _s
+      			var n = giphyURL.indexOf('200') + 3;
+      			// slice sting insert _s concatenate
+      			var output = [giphyURL.slice(0, n), '_s', giphyURL.slice(n)].join('');
+
+      			// get rating
       			var rating = response.data[i].rating;
+
+      			// creating img tag and p
     			var newImg = $("<img>");
     			var newRating = $("<p>");
-    			newImg.attr("src", giphyURL);
+
+    			// add attrs to img
+    			newImg.addClass('giphImg');
+    			newImg.attr('data-state', 'still');
+    			newImg.attr('data-still', output);
+    			newImg.attr('data-animate', giphyURL);
+    			newImg.attr("src", output);
+
+    			// add rating to p tag
     			newRating.append('Rating: ' + rating);
-    			var newAnimal = $("<div>").addClass('animalClass').append(newRating, newImg);
-    			// newAnimal.prepend("Rating: " + rating);
-    			$("#animals").append(newAnimal);
+
+    			// create complete div
+    			var newAnimal = $("<div>").addClass('instrumentClass').append(newRating, newImg);
+    			
+    			// append div to screen
+    			$("#instruments").append(newAnimal);
         	}
     	});
 	}
+
+	// when user searches for giphs in input field
+	$(document).on('click', '#addinput', function(event){
+
+		// prevent page reload
+		event.preventDefault();
+
+		// if statement to prevent creating blank button
+		if($("#input").val() != ' '){
+
+			// add imput to topic array
+			topics.push($("#input").val().trim());
+
+			// call buttonCreate to display new button
+			buttonCreate();
+
+			// empty input field after creation
+			$("#input").val(" ");
+		}
+		
+	});
+
+	// animate / still giph on click
+	$(document).on('click', '.giphImg', function(event){
+
+		// determine date state
+		if($(this).attr('data-state') == 'still'){
+
+			// change giph source and state
+			$(this).attr('src', $(this).attr('data-animate'));
+			$(this).attr('data-state', 'animate');
+
+		}else{
+			
+			// change giph source and state
+			$(this).attr('src', $(this).attr('data-still'));
+			$(this).attr('data-state', 'still');
+		
+		}
+	});
 });
