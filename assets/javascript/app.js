@@ -27,20 +27,20 @@ $(document).ready(function() {
 	// call to display buttons
 	buttonCreate();
 
-	// determine name and cal fucntion to display giphs
+	// determine name and call fucntion to display gifs
 	$(document).on('click', 'button', function(event){
 		
 		// get text in button
 		var name = this.id;
 
-		// clear div for new set of gighs
+		// clear div for new set of gifs
 		$("#instruments").empty();
 
 		// call showImage with name
 		showImage(name);
 	})
 
-	// get giph & rating and display on screen
+	// get gif & rating and display on screen
 	function showImage(name){
 
 		// concatenate url with given name
@@ -85,7 +85,7 @@ $(document).ready(function() {
     	});
 	}
 
-	// when user searches for giphs in input field
+	// when user searches for gifs in input field
 	$(document).on('click', '#addinput', function(event){
 
 		// prevent page reload
@@ -94,7 +94,7 @@ $(document).ready(function() {
 		// if statement to prevent creating blank button
 		if($("#input").val() != ' '){
 
-			// add imput to topic array
+			// add input to topic array
 			topics.push($("#input").val().trim());
 
 			// call buttonCreate to display new button
@@ -106,19 +106,19 @@ $(document).ready(function() {
 		
 	});
 
-	// animate / still giph on click
+	// animate / still gif on click
 	$(document).on('click', '.giphImg', function(event){
 
 		// determine date state
 		if($(this).attr('data-state') == 'still'){
 
-			// change giph source and state
+			// change gif source and state
 			$(this).attr('src', $(this).attr('data-animate'));
 			$(this).attr('data-state', 'animate');
 
 		}else{
 			
-			// change giph source and state
+			// change gif source and state
 			$(this).attr('src', $(this).attr('data-still'));
 			$(this).attr('data-state', 'still');
 		
