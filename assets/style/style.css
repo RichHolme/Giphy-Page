@@ -8,39 +8,31 @@ button{
 }
 
 #addinput{
-	background-color: #0d98ba !important;
+	background-color: #075b6f !important;
 	font-size: 18px !important;
+	color: white !important;
+	margin-top: 10px !important;
 }
 
 body{
 	overflow-x: hidden;
-}
-
-div{
-	margin-left: 30px;
-	margin-bottom: 10px;
-	/*display: block;*/
+	background-image: url('../images/background.jpg') !important;
 }
 
 .instrumentClass{
-	/*text-align: center;*/
 	float: left;
-}
-
-#form{
-	float: right;
-	/*white-space: nowrap;*/
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 10px;
 }
 
 label{
-	display: block;
 	font-size: 18px;
+	color: white;
 }
 
 input{
-	display: block;
-	margin-top: 10px !important;
-	margin-right: 70px !important;
+	margin-top: 5px !important;
 }
 
 #input{
@@ -49,4 +41,23 @@ input{
 
 p{
 	font-size: 18px;
+	color: white;
 }
+
+.myContainer{
+	background-color: rgba(13,152,186, .9);
+	border: solid #0d98ba 1px;
+	margin: 20px 10px 10px 10px;
+	padding: 10px;
+}
+
+form{
+	background-color: rgba(13,152,186, .9);
+	border: solid #0d98ba 1px;
+	padding: 10px;
+	margin: 20px 0px 10px 10px;
+	width: 420px;
+}
+
+
+

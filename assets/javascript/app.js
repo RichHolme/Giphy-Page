@@ -3,7 +3,10 @@ $(document).ready(function() {
 	// to make sure user doesnt create empty button on page load
 	$("#input").val(" ");
 
-	// array of animal names
+	// hide empty container
+	$(".myContainer").hide();
+
+	// array of instrument names
 	var topics = ['Trumpet', 'Violin', 'Bongo', 'Snare Drum', 'Tuba', 'Flute', 'Guitar', 'Piano', 'Bass Guitar', 'Harmonica', 'Saxophone',
 				  'Clarinet', 'Trombone', 'Drum', 'Banjo', 'Harp', 'Fiddle', 'Cello', 'Xylophone', 'Cymbal']
 
@@ -13,7 +16,7 @@ $(document).ready(function() {
 		// empty div for each new button
 		$("#buttons").empty();
 
-		// loog through animal array and display each as button
+		// loop through animal array and display each as button
 		for(var i = 0; i < topics.length; i++){
 
 			// get array strings and use strings as button text value
@@ -29,8 +32,11 @@ $(document).ready(function() {
 
 	// determine name and call fucntion to display gifs
 	$(document).on('click', 'button', function(event){
+
+		// show container
+		$(".myContainer").show();
 		
-		// get text in button
+		// get id of button
 		var name = this.id;
 
 		// clear div for new set of gifs
@@ -56,7 +62,7 @@ $(document).ready(function() {
       			var giphyURL = response.data[i].images.fixed_height.url;
       			// get index of 200 add 3 to insert _s
       			var n = giphyURL.indexOf('200') + 3;
-      			// slice sting insert _s concatenate
+      			// slice string insert _s concatenate
       			var output = [giphyURL.slice(0, n), '_s', giphyURL.slice(n)].join('');
 
       			// get rating
@@ -77,16 +83,19 @@ $(document).ready(function() {
     			newRating.append('Rating: ' + rating);
 
     			// create complete div
-    			var newAnimal = $("<div>").addClass('instrumentClass').append(newRating, newImg);
+    			var newInstruments = $("<div>").addClass('instrumentClass').append(newRating, newImg);
     			
     			// append div to screen
-    			$("#instruments").append(newAnimal);
+    			$("#instruments").append(newInstruments);
         	}
     	});
 	}
 
 	// when user searches for gifs in input field
 	$(document).on('click', '#addinput', function(event){
+
+		// show container
+		$(".myContainer").show();
 
 		// prevent page reload
 		event.preventDefault();
