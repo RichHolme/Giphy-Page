@@ -85,7 +85,7 @@ $(document).ready(function() {
     			newRating.append('Rating: ' + rating);
 
     			// play button
-    			var playBtn = $("<img class='playBtn'>").attr('src', '../images/play.jpg');
+    			var playBtn = $("<img class='playBtn'>").attr('src', '../Giphy-Page/assets/images/play.jpg');
     			playBtn.attr('id', 'play' + i);
 
     			// create complete div
@@ -123,14 +123,15 @@ $(document).ready(function() {
 
 	// animate gif on click
 	$(document).on('click', '.playBtn', function(event){
-		$(this).attr('src', '../images/still.jpg');
+		// switch img to pause
+		$(this).attr('src', '../Giphy-Page/assets/images/still.jpg');
 		$(this).addClass('stillBtn');
-		var id = $(this).attr('id');
-		console.log(id);
-		let giphId = id.charAt(id.length-1);
-		console.log("#" + giphId);
 
-		// change gif source and state
+		// these lines will get the id of the button and use it to get the id of the gif
+		var id = $(this).attr('id');
+		let giphId = id.charAt(id.length-1);
+
+		// change gif state
 		$("#" + giphId).attr('src', $("#" + giphId).attr('data-animate'));
 		$("#" + giphId).attr('data-state', 'animate');
 
@@ -138,14 +139,15 @@ $(document).ready(function() {
 
 	// still gif on click
 	$(document).on('click', '.stillBtn', function(event){
-		// $(this).hide();
-		$(this).attr('src', '../images/play.jpg');
+		// switch img to play
+		$(this).attr('src', '../Giphy-Page/assets/images/play.jpg');
 		$(this).removeClass('stillBtn');
+
+		// these lines will get the id of the button and use it to get the id of the gif
 		var id = $(this).attr('id');
-		console.log(id);
 		let giphId = id.charAt(id.length-1);
-		console.log("#" + giphId);
 		
+		// change gif state
 		$("#" + giphId).attr('src', $("#" + giphId).attr('data-still'));
 		$("#" + giphId).attr('data-state', 'still');
 		
