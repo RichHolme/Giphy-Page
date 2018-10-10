@@ -85,7 +85,7 @@ $(document).ready(function() {
     			newRating.append('Rating: ' + rating);
 
     			// play button
-    			var playBtn = $("<img class='playBtn'>").attr('src', 'file:///C:/Users/richt/UNCHomework/Giphy-Page/assets/images/play.jpg');
+    			var playBtn = $("<img class='playBtn'>").attr('src', '../images/play.jpg');
     			playBtn.attr('id', 'play' + i);
 
     			// create complete div
@@ -123,7 +123,7 @@ $(document).ready(function() {
 
 	// animate gif on click
 	$(document).on('click', '.playBtn', function(event){
-		$(this).attr('src', 'file:///C:/Users/richt/UNCHomework/Giphy-Page/assets/images/still.jpg');
+		$(this).attr('src', '../images/still.jpg');
 		$(this).addClass('stillBtn');
 		var id = $(this).attr('id');
 		console.log(id);
@@ -139,7 +139,7 @@ $(document).ready(function() {
 	// still gif on click
 	$(document).on('click', '.stillBtn', function(event){
 		// $(this).hide();
-		$(this).attr('src', 'file:///C:/Users/richt/UNCHomework/Giphy-Page/assets/images/play.jpg');
+		$(this).attr('src', '../images/play.jpg');
 		$(this).removeClass('stillBtn');
 		var id = $(this).attr('id');
 		console.log(id);
