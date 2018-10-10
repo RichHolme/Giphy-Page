@@ -16,7 +16,7 @@ button{
 
 body{
 	overflow-x: hidden;
-	background-image: url(../images/background.jpg);
+	/*background-image: url(../images/play.jpg);*/
 }
 
 .instrumentClass{
@@ -24,7 +24,22 @@ body{
 	margin-top: 10px;
 	margin-left: 17px;
 	margin-bottom: 10px;
+	/*position: relative;*/
 }
+
+.giphImg{
+	/*position: absolute;*/
+}
+
+.playBtn{
+	position: relative;
+	height: 40px;
+	width: 40px;
+	/*color: white;*/
+	/*top: 0;*/
+	left: -50%;
+}
+
 
 label{
 	font-size: 18px;
@@ -36,7 +51,7 @@ input{
 }
 
 #input{
-	width: 400px;
+	width: 300px;
 }
 
 p{
@@ -45,9 +60,9 @@ p{
 }
 
 .myContainer{
-	background-color: rgba(13,152,186, .9);
-	border: solid #0d98ba 1px;
-	margin: 20px 10px 10px 10px;
+	/*background-color: rgba(13,152,186, .9);*/
+	/*border: solid #0d98ba 1px;*/
+	/*margin: 20px 10px 10px 10px;*/
 	padding: 10px;
 }
 
@@ -55,9 +70,21 @@ form{
 	background-color: rgba(13,152,186, .9);
 	border: solid #0d98ba 1px;
 	padding: 10px;
-	margin: 20px 0px 10px 10px;
-	width: 420px;
+	margin: 55px 0px 10px 10px;
+	width: 350px;
 }
+
+.jumbotron{
+	text-align: center;
+	color: white !important;
+	background-color: #0d98ba !important;
+}
+
+img{
+		width: 320px;
+		height: 210px;
+		/*box-shadow: 1px 1px 8px 1px #888888;*/
+	}
 
 @media only screen and (max-width: 1024px){
 	

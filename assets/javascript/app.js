@@ -57,6 +57,7 @@ $(document).ready(function() {
       		method: 'GET'
    		}).then(function(response) {
    			for (var i = 0; i < response.data.length; i++) {
+   				// console.log(response.data);
 
       			// getting img url
       			var giphyURL = response.data[i].images.fixed_height.url;
@@ -74,16 +75,21 @@ $(document).ready(function() {
 
     			// add attrs to img
     			newImg.addClass('giphImg');
+    			newImg.attr("id", i);
     			newImg.attr('data-state', 'still');
     			newImg.attr('data-still', output);
     			newImg.attr('data-animate', giphyURL);
     			newImg.attr("src", output);
-
+    			// console.log(newImg);
     			// add rating to p tag
     			newRating.append('Rating: ' + rating);
 
+    			// play button
+    			var playBtn = $("<img class='playBtn'>").attr('src', 'file:///C:/Users/richt/UNCHomework/Giphy-Page/assets/images/play.jpg');
+    			playBtn.attr('id', 'play' + i);
+
     			// create complete div
-    			var newInstruments = $("<div>").addClass('instrumentClass').append(newRating, newImg);
+    			var newInstruments = $("<div>").addClass('instrumentClass').append(newRating, newImg, playBtn);
     			
     			// append div to screen
     			$("#instruments").append(newInstruments);
@@ -115,22 +121,34 @@ $(document).ready(function() {
 		
 	});
 
-	// animate / still gif on click
-	$(document).on('click', '.giphImg', function(event){
+	// animate gif on click
+	$(document).on('click', '.playBtn', function(event){
+		$(this).attr('src', 'file:///C:/Users/richt/UNCHomework/Giphy-Page/assets/images/still.jpg');
+		$(this).addClass('stillBtn');
+		var id = $(this).attr('id');
+		console.log(id);
+		let giphId = id.charAt(id.length-1);
+		console.log("#" + giphId);
 
-		// determine date state
-		if($(this).attr('data-state') == 'still'){
+		// change gif source and state
+		$("#" + giphId).attr('src', $("#" + giphId).attr('data-animate'));
+		$("#" + giphId).attr('data-state', 'animate');
 
-			// change gif source and state
-			$(this).attr('src', $(this).attr('data-animate'));
-			$(this).attr('data-state', 'animate');
+	});
 
-		}else{
-			
-			// change gif source and state
-			$(this).attr('src', $(this).attr('data-still'));
-			$(this).attr('data-state', 'still');
+	// still gif on click
+	$(document).on('click', '.stillBtn', function(event){
+		// $(this).hide();
+		$(this).attr('src', 'file:///C:/Users/richt/UNCHomework/Giphy-Page/assets/images/play.jpg');
+		$(this).removeClass('stillBtn');
+		var id = $(this).attr('id');
+		console.log(id);
+		let giphId = id.charAt(id.length-1);
+		console.log("#" + giphId);
 		
-		}
+		$("#" + giphId).attr('src', $("#" + giphId).attr('data-still'));
+		$("#" + giphId).attr('data-state', 'still');
+		
+		
 	});
 });
